@@ -6,13 +6,44 @@ body {
     margin: 0px;
 }
 
+#btns-container {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+    width: 33%;
+    height: 4rem;
+    margin-left: 7%;
+}
+
+#btns-container button {
+    cursor: pointer;
+    border: none;
+    border-radius: 1px;
+    width: 50%;
+    height: 100%;
+    border: solid black 1px;
+    font-size: 2rem;
+    font-weight: 200;
+    border-top: 1px;
+}
+
+#start-btn {
+    background-color: rgba(17, 255, 0, 0.626);
+}
+
+#end-btn {
+    background-color: rgba(255, 0, 0, 0.55);
+}
+
 #dashboard {
-    width: 99.5vw;
+    display: grid;
+
+    width: 100vw;
     height: 20vh;
-    background-color: blue;
+    background-color: rgba(255, 214, 156, 0.422);
+    border-bottom: solid black 2px;
 }
 #table-holder {
-
     width: 70%;
 }
 
