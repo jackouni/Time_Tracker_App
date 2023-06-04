@@ -2,6 +2,7 @@
 const startBtn = document.getElementById("start-btn");
 const endBtn = document.getElementById("end-btn");
 const mainTable = document.getElementById("main-table");
+const totalTimeDisplay = document.getElementById("total-time");
 let sessionActive = false;
 let startTime;
 
@@ -36,6 +37,35 @@ function pad(num, size) {
     return s;
 }
 
+function calculateTotalTime() {
+    // Collect all rows of the table
+    const rows = mainTable.rows;
+    let totalSeconds = 0;
+    
+    // Iterate through each row, starting from the second one (since the first row is the header)
+    for(let i = 1; i < rows.length; i++) {
+        // Get the time entry from the fifth cell of each row
+        const timeStr = rows[i].cells[4].innerHTML;
+        
+        // Split the string into hours, minutes, and seconds
+        const [hours, minutes, seconds] = timeStr.split(':').map(Number);
+        
+        // Convert the time entry into seconds and add it to the total
+        totalSeconds += (hours * 3600) + (minutes * 60) + seconds;
+    }
+    
+    // Convert the total seconds back into a time format
+    const hours = pad(Math.floor(totalSeconds / 3600), 2);
+    const mins = pad(Math.floor((totalSeconds % 3600) / 60), 2);
+    const secs = pad(totalSeconds % 60, 2);
+
+    const totalTime = `${hours}:${mins}:${secs}`;
+
+    // Return the total time
+    return totalTime;
+}
+
+
 // --> EVENT LISTENERS <-- //
 
 startBtn.addEventListener('click', function() {
@@ -60,5 +90,11 @@ endBtn.addEventListener('click', function() {
         const elapsedTime = `${hours}:${mins}:${secs}`;
         mainTable.rows[mainTable.rows.length - 1].cells[4].innerHTML = elapsedTime;
         sessionActive = false;
+        let totalTime = calculateTotalTime()
+        totalTimeDisplay.textContent = "Total time: " + totalTime;
     } else alert("Error: Start-time required");
 });
+
+console.log(mainTable.rows)
+console.log(mainTable.rows[0])
+console.log(mainTable.rows[2])
