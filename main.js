@@ -94,7 +94,3 @@ endBtn.addEventListener('click', function() {
         totalTimeDisplay.textContent = "Total time: " + totalTime;
     } else alert("Error: Start-time required");
 });
-
-console.log(mainTable.rows)
-console.log(mainTable.rows[0])
-console.log(mainTable.rows[2])
